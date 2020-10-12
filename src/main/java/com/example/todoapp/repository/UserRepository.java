@@ -1,8 +1,8 @@
 package com.example.todoapp.repository;
 
-import com.example.todoapp.entity.User;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import com.example.todoapp.model.User;
 
-public interface UserRepository extends MongoRepository<User,String> {
+public interface UserRepository {
 
+    User findById(Integer id);
 }
