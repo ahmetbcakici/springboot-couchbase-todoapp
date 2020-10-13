@@ -5,4 +5,6 @@ import com.example.todoapp.model.User;
 public interface UserRepository {
 
     User findById(Integer id);
+
+    User save(User user);
 }

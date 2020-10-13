@@ -4,14 +4,9 @@ import com.example.todoapp.model.User;
 import com.example.todoapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
-@Controller
+@RestController
 @RequestMapping("/user")
 public class UserController {
 
@@ -20,6 +15,18 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getAll(@PathVariable Integer id) {
-        return ResponseEntity.of(Optional.of(userRepository.findById(id)));
+        return ResponseEntity.ok(userRepository.findById(id));
+    }
+
+    @PostMapping
+    public String save(@RequestBody User user) {
+        System.out.println("user post");
+        System.out.println(user);
+        return "tot";
+        //System.out.println(user);
+        //userRepository.save(user);
+
+        // return ResponseEntity(userRepository.findById(id));
+        //return ResponseEntity.of(Optional.of(userRepository.findById(id)));
     }
 }

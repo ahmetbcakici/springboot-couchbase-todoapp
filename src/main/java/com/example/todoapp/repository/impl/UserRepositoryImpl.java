@@ -14,13 +14,21 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User findById(Integer id) {
-        var userBucket = couchbaseCluster.bucket("user");
-        var userResult = userBucket.defaultCollection().get(id.toString());
+        var userCollection = couchbaseCluster.bucket("user").defaultCollection();
+        var userResult = userCollection.get(id.toString());
         return userResult.contentAs(User.class);
         /*
         User user = new User();
         user.setId(1);
         user.setName("Ahmet");*/
+    }
 
+
+    @Override
+    public User save(User user) {
+        var userCollection = couchbaseCluster.bucket("user").defaultCollection();
+        userCollection.insert("5",user);
+
+        return null;
     }
 }
