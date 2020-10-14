@@ -17,18 +17,13 @@ public class UserRepositoryImpl implements UserRepository {
         var userCollection = couchbaseCluster.bucket("user").defaultCollection();
         var userResult = userCollection.get(id.toString());
         return userResult.contentAs(User.class);
-        /*
-        User user = new User();
-        user.setId(1);
-        user.setName("Ahmet");*/
     }
 
 
     @Override
-    public User save(User user) {
+    public void save(User user) {
         var userCollection = couchbaseCluster.bucket("user").defaultCollection();
-        userCollection.insert("5",user);
+        userCollection.insert(String.valueOf(user.getId()), user);
 
-        return null;
     }
 }

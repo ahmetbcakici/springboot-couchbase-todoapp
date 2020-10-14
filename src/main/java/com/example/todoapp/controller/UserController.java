@@ -14,19 +14,13 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getAll(@PathVariable Integer id) {
+    public ResponseEntity<User> getUserById(@PathVariable Integer id) {
         return ResponseEntity.ok(userRepository.findById(id));
     }
 
     @PostMapping
-    public String save(@RequestBody User user) {
-        System.out.println("user post");
-        System.out.println(user);
-        return "tot";
-        //System.out.println(user);
-        //userRepository.save(user);
-
-        // return ResponseEntity(userRepository.findById(id));
-        //return ResponseEntity.of(Optional.of(userRepository.findById(id)));
+    public User save(@RequestBody User user) {
+        userRepository.save(user);
+        return user;
     }
 }

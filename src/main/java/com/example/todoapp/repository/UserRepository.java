@@ -6,5 +6,5 @@ public interface UserRepository {
 
     User findById(Integer id);
 
-    User save(User user);
+    void save(User user);
 }
