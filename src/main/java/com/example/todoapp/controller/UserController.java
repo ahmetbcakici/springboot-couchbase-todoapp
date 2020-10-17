@@ -23,4 +23,10 @@ public class UserController {
         userRepository.save(user);
         return user;
     }
+
+    @DeleteMapping("/{id}")
+    public Boolean delete(@PathVariable Integer id) {
+        userRepository.deleteUserById(id);
+        return true;
+    }
 }

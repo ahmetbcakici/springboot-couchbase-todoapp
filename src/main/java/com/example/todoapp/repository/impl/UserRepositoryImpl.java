@@ -26,4 +26,10 @@ public class UserRepositoryImpl implements UserRepository {
         userCollection.insert(String.valueOf(user.getId()), user);
 
     }
+
+    @Override
+    public void deleteUserById(Integer id) {
+        var userCollection = couchbaseCluster.bucket("user").defaultCollection();
+        userCollection.remove(id.toString());
+    }
 }

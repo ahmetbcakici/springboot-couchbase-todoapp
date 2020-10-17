@@ -6,4 +6,6 @@ public interface UserRepository {
     User findById(Integer id);
 
     void save(User user);
+
+    void deleteUserById(Integer id);
 }
