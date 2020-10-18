@@ -49,7 +49,7 @@ public class CouchbaseConfiguration {
     }
 
     @Bean
-    public Collection restaurantCollection(Cluster couchbaseCluster) {
+    public Collection userCollection(Cluster couchbaseCluster) {
         couchbaseCluster.bucket(couchbaseResource.getBucketName()).waitUntilReady(Duration.ofSeconds(60));
         return couchbaseCluster.bucket(couchbaseResource.getBucketName()).defaultCollection();
     }

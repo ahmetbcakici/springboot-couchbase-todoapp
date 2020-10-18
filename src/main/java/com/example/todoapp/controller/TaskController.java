@@ -21,9 +21,8 @@ public class TaskController {
         return ResponseEntity.ok(taskRepository.findUserTasks());
     }
 
-    //@DeleteMapping("/{id}")
-    //public Boolean deleteTask(@PathVariable Integer id){
-    //
-    //    return true;
-    //}
+    @DeleteMapping("/{id}")
+    public Boolean deleteTaskById(@PathVariable Integer id) {
+        return taskRepository.deleteTaskById(id);
+    }
 }

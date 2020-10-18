@@ -1,35 +1,30 @@
 package com.example.todoapp.repository.impl;
 
-import com.couchbase.client.java.Cluster;
+import com.couchbase.client.java.Collection;
 import com.example.todoapp.model.User;
 import com.example.todoapp.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@RequiredArgsConstructor
 public class UserRepositoryImpl implements UserRepository {
 
-    @Autowired
-    private Cluster couchbaseCluster;
+    private final Collection userCollection;
 
     @Override
     public User findById(Integer id) {
-        var userCollection = couchbaseCluster.bucket("user").defaultCollection();
         var userResult = userCollection.get(id.toString());
         return userResult.contentAs(User.class);
     }
 
-
     @Override
     public void save(User user) {
-        var userCollection = couchbaseCluster.bucket("user").defaultCollection();
         userCollection.insert(String.valueOf(user.getId()), user);
-
     }
 
     @Override
     public void deleteUserById(Integer id) {
-        var userCollection = couchbaseCluster.bucket("user").defaultCollection();
         userCollection.remove(id.toString());
     }
 }

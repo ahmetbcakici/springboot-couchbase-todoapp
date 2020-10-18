@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface TaskRepository {
     List<Task> findUserTasks();
+
+    Boolean deleteTaskById(int id);
 }
