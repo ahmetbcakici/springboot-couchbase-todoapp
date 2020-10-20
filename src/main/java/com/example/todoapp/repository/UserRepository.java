@@ -1,5 +1,6 @@
 package com.example.todoapp.repository;
 
+import com.couchbase.client.java.kv.MutationResult;
 import com.example.todoapp.model.User;
 
 public interface UserRepository {
@@ -8,4 +9,6 @@ public interface UserRepository {
     void save(User user);
 
     void deleteUserById(Integer id);
+
+    MutationResult updateUserById(User user);
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
+
 public class UserController {
 
     @Autowired
@@ -19,13 +20,19 @@ public class UserController {
     }
 
     @PostMapping
-    public User save(@RequestBody User user) {
+    public User saveNewUser(@RequestBody User user) {
         userRepository.save(user);
         return user;
     }
 
+    @PutMapping()
+    public User updateUser(@RequestBody User user) {
+        userRepository.updateUserById(user);
+        return user;
+    }
+
     @DeleteMapping("/{id}")
-    public Boolean delete(@PathVariable Integer id) {
+    public Boolean deleteUserById(@PathVariable Integer id) {
         userRepository.deleteUserById(id);
         return true;
     }

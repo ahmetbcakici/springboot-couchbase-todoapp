@@ -1,6 +1,7 @@
 package com.example.todoapp.repository.impl;
 
 import com.couchbase.client.java.Collection;
+import com.couchbase.client.java.kv.MutationResult;
 import com.example.todoapp.model.User;
 import com.example.todoapp.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,5 +27,15 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public void deleteUserById(Integer id) {
         userCollection.remove(id.toString());
+    }
+
+    @Override
+    public MutationResult updateUserById(User user) {
+        //try {
+        var userResult = userCollection.replace(String.valueOf(user.getId()), user);
+        return userResult;
+        //} catch (DocumentNotFoundException e) {
+        //    throw new (e);
+        //}
     }
 }
