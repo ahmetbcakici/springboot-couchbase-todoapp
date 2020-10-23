@@ -3,7 +3,6 @@ package com.example.todoapp.controller;
 import com.example.todoapp.model.Task;
 import com.example.todoapp.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,9 +15,27 @@ public class TaskController {
     private TaskRepository taskRepository;
 
     @GetMapping
-    public ResponseEntity<List<Task>> getAllTasks() {
+    public List<Task> getAllTasks() {
         System.out.println("/task get");
-        return ResponseEntity.ok(taskRepository.findUserTasks());
+        var x = taskRepository.findUserTasks();
+        System.out.println(x);
+        //return x;
+        return x;
+    }
+
+    @GetMapping("/{id}")
+    public Task findTaskById(@PathVariable Integer id) {
+        return taskRepository.findTaskById(id);
+    }
+
+    @PostMapping()
+    public Task findTaskById(@RequestBody Task task) {
+        return taskRepository.addNewTask(task);
+    }
+
+    @PatchMapping("/{id}")
+    public Boolean updateTaskById(@PathVariable Integer id) {
+        return taskRepository.updateTaskById(id);
     }
 
     @DeleteMapping("/{id}")

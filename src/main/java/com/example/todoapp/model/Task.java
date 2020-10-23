@@ -1,5 +1,6 @@
 package com.example.todoapp.model;
 
+import com.example.todoapp.model.enums.Status;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,4 +12,3 @@ public class Task {
     Status status;
 }
 
-enum Status {DO, DOING, DONE}

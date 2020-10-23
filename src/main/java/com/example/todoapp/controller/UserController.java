@@ -1,5 +1,6 @@
 package com.example.todoapp.controller;
 
+import com.couchbase.client.java.Cluster;
 import com.example.todoapp.model.User;
 import com.example.todoapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
