@@ -29,7 +29,7 @@ public class TaskController {
     }
 
     @PostMapping()
-    public Task findTaskById(@RequestBody Task task) {
+    public Task addNewTask(@RequestBody Task task) {
         return taskRepository.addNewTask(task);
     }
 
